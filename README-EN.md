@@ -1,9 +1,15 @@
 # QYKeyboard
+
 QYKeyboard is a custom Android input method with a built-in clipboard auto-save feature, allowing copied content to be saved to a local file in real time for easy historical reference.
+
 ﻿
+
 ﻿
+
 # ⌨️ QYKeyboard - Simple Input Method
+
 ﻿
+
 <div align="center">
 ﻿
 ![Android](https://img.shields.io/badge/Android-6.0%2B-brightgreen)
@@ -257,4 +263,3 @@ This project adopts the MIT license - view the [LICENSE] file for details
 *Make input smarter, make life more convenient*
 ﻿
 </div>
-﻿
