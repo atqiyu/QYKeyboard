@@ -236,7 +236,7 @@ adb logcat -v time | grep -i "atqiyu" > keyboard_log.txt
 ```
 
 ---
-##### Update QYKeyborad v1.1.0 (更新)
+### Update QYKeyborad v1.1.0 (更新)
 - 优化剪贴板监听功能
 - 优化剪贴板内容的保存和部分处理逻辑
 - 剪贴板内容保存文件的时间精确到纳秒(防止快速复制内容造成文件丢失)
