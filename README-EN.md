@@ -1,9 +1,15 @@
 # QYKeyboard
+
 QYKeyboard is a custom Android input method with a built-in clipboard auto-save feature, allowing copied content to be saved to a local file in real time for easy historical reference.
+
 ﻿
+
 ﻿
+
 # ⌨️ QYKeyboard - Simple Input Method
+
 ﻿
+
 <div align="center">
 ﻿
 ![Android](https://img.shields.io/badge/Android-6.0%2B-brightgreen)
@@ -17,15 +23,15 @@ QYKeyboard is a basic Android custom input method that currently supports fundam
 ## ✨ Feature functions
 ﻿
 ### 🎨 Simple interface
-- **Comfortable color scheme**：Black and white minimalist
+- ** Comfortable color scheme**：Black and white minimalist
 ﻿
 ### 📋 Intelligent clipboard
-- **Auto-save**：Real time monitoring of clipboard changes, automatic saving of copied content
-- **History**：All clipboard contents are saved to a local file by timestamp
-- **One-click operation**：Quickly copy and paste to improve input efficiency
+- ** Auto-save**：Real time monitoring of clipboard changes, automatic saving of copied content
+- ** History**：All clipboard contents are saved to a local file by timestamp
+- ** One-click operation**：Quickly copy and paste to improve input efficiency
 ﻿
 ### ⌨️ Practical function
-- **Input**：Basic implementation of English input function
+- ** Input **：Basic implementation of English input function
 ﻿
 ## 🚀 Quick Start
 ﻿
@@ -35,18 +41,18 @@ QYKeyboard is a basic Android custom input method that currently supports fundam
 ﻿
 ### Installation Steps
 ﻿
-1. **Download and Install**
+1. ** Download and Install **
    ```bash
    # Install through ADB
    adb install app-debug.apk
    ```
    - Or install APK on your Android phone by yourself
 ﻿
-2. **Enable input method**
+2. ** Enable input method **
    - Open "Settings" → "System" → "Language and Input Method"
    - Find 'QYKeyboard' and enable it
 ﻿
-3. **Set as default**
+3. ** Set as default **
    - In the input method interface of the settings
    - Select "Default Input Method" → "QYKeyboard"
 ﻿
@@ -257,4 +263,3 @@ This project adopts the MIT license - view the [LICENSE] file for details
 *Make input smarter, make life more convenient*
 ﻿
 </div>
-﻿
