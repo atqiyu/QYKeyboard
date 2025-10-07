@@ -9,7 +9,7 @@ QYKeyboard is a custom Android input method with a built-in clipboard auto-save 
 
 ![Android](https://img.shields.io/badge/Android-6.0%2B-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-blue)
-![Version](https://img.shields.io/badge/Version-1.0.0-orange)
+![Version](https://img.shields.io/badge/Version-1.1.0-orange)
 
 QYKeyboard 是一个基础的 Android 自定义输入法，目前实现了基本的英文输入功能。特色是内置了剪贴板监测功能，能够自动保存用户复制的所有文本内容到手机存储中，方便后续查看和使用。键盘布局简洁清晰，支持大小写切换和基础符号输入，适合需要记录剪贴板历史的用户使用。
 
@@ -234,6 +234,12 @@ A: 清除应用数据，重新启用输入法
 # 获取详细错误信息
 adb logcat -v time | grep -i "atqiyu" > keyboard_log.txt
 ```
+
+---
+##### Update QYKeyborad v1.1.0 (更新)
+- 优化剪贴板监听功能
+- 优化剪贴板内容的保存和部分处理逻辑
+- 剪贴板内容保存文件的时间精确到纳秒(防止快速复制内容造成文件丢失)
 
 ## 🤝 贡献指南
 
