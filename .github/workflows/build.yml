@@ -1,0 +1,52 @@
+name: Build APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+    
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v2
+    
+    - name: Build debug APK
+      run: |
+        cd QYKeyboard
+        chmod +x gradlew
+        ./gradlew assembleDebug
+    
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: QYKeyboard-debug.apk
+        path: QYKeyboard/app/build/outputs/apk/debug/app-debug.apk
+    
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: v1.2.0
+        release_name: QYKeyboard v1.2.0
+        body: |
+          ## 更新内容
+          - 新增数字/符号键盘切换功能
+          - 新增触觉反馈开关设置
+          - 优化键盘UI，采用Material Design风格
+          - 修复键盘布局问题
+        artifacts: QYKeyboard/app/build/outputs/apk/debug/app-debug.apk
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
