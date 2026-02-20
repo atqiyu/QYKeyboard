@@ -48,7 +48,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         tag_name: v1.2.0
-        release_name: QYKeyboard v1.2.0
+        name: QYKeyboard v1.2.0
         body: |
           ## 更新内容
           - 新增数字/符号键盘切换功能
