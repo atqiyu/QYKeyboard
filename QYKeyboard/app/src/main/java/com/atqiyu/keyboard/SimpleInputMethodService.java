@@ -26,14 +26,14 @@ public class SimpleInputMethodService extends InputMethodService {
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         qwertyKeyboard = new Keyboard(this, R.xml.qwerty);
         symbolKeyboard = new Keyboard(this, R.xml.symbols);
-        ClipboardManager.initClipboardListener(this);
+        ClipboardHelper.initClipboardListener(this);
     }
     
     @Override
     public void onDestroy() {
         super.onDestroy();
         // 清理剪贴板监听
-        ClipboardManager.removeClipboardListener(this);
+        ClipboardHelper.removeClipboardListener(this);
     }
     
     @Override
@@ -88,7 +88,7 @@ public class SimpleInputMethodService extends InputMethodService {
                     if (selectedText != null && selectedText.length() > 0) {
                         String text = selectedText.toString();
                         if (!text.trim().isEmpty()) {
-                            ClipboardManager.copyToClipboard(SimpleInputMethodService.this, text);
+                            ClipboardHelper.copyToClipboard(SimpleInputMethodService.this, text);
                             Toast.makeText(SimpleInputMethodService.this, "已复制到剪贴板", Toast.LENGTH_SHORT).show();
                         }
                     } else {
@@ -101,7 +101,7 @@ public class SimpleInputMethodService extends InputMethodService {
                             String text = (beforeCursor != null ? beforeCursor.toString() : "") + 
                                          (afterCursor != null ? afterCursor.toString() : "");
                             if (!text.trim().isEmpty()) {
-                                ClipboardManager.copyToClipboard(SimpleInputMethodService.this, text);
+                                ClipboardHelper.copyToClipboard(SimpleInputMethodService.this, text);
                                 Toast.makeText(SimpleInputMethodService.this, "已复制到剪贴板", Toast.LENGTH_SHORT).show();
                             } else {
                                 Toast.makeText(SimpleInputMethodService.this, "没有可复制的文本", Toast.LENGTH_SHORT).show();
@@ -113,7 +113,7 @@ public class SimpleInputMethodService extends InputMethodService {
                     break;
                     
                 case -101: // 粘贴
-                    String clipboardText = ClipboardManager.getClipboardText(SimpleInputMethodService.this);
+                    String clipboardText = ClipboardHelper.getClipboardText(SimpleInputMethodService.this);
                     if (clipboardText != null && !clipboardText.trim().isEmpty()) {
                         ic.commitText(clipboardText, 1);
                         Toast.makeText(SimpleInputMethodService.this, "已粘贴", Toast.LENGTH_SHORT).show();
