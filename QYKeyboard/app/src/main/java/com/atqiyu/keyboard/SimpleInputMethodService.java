@@ -1,8 +1,11 @@
 package com.atqiyu.keyboard;
 
+import android.content.Context;
 import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.View;
 import android.view.inputmethod.InputConnection;
 import android.widget.Toast;
@@ -12,11 +15,17 @@ public class SimpleInputMethodService extends InputMethodService {
     private KeyboardView keyboardView;
     private Keyboard keyboard;
     private boolean caps = false;
+    private boolean isSymbolMode = false;
+    private Vibrator vibrator;
+    private Keyboard qwertyKeyboard;
+    private Keyboard symbolKeyboard;
     
     @Override
     public void onCreate() {
         super.onCreate();
-        // 初始化剪贴板监听
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        qwertyKeyboard = new Keyboard(this, R.xml.qwerty);
+        symbolKeyboard = new Keyboard(this, R.xml.symbols);
         ClipboardManager.initClipboardListener(this);
     }
     
@@ -31,7 +40,7 @@ public class SimpleInputMethodService extends InputMethodService {
     public View onCreateInputView() {
         try {
             keyboardView = (KeyboardView) getLayoutInflater().inflate(R.layout.keyboard, null);
-            keyboard = new Keyboard(this, R.xml.qwerty);
+            keyboard = isSymbolMode ? symbolKeyboard : qwertyKeyboard;
             keyboardView.setKeyboard(keyboard);
             keyboardView.setOnKeyboardActionListener(new SimpleKeyboardListener());
             return keyboardView;
@@ -39,6 +48,12 @@ public class SimpleInputMethodService extends InputMethodService {
             e.printStackTrace();
             return null;
         }
+    }
+    
+    private void switchKeyboard() {
+        isSymbolMode = !isSymbolMode;
+        keyboard = isSymbolMode ? symbolKeyboard : qwertyKeyboard;
+        keyboardView.setKeyboard(keyboard);
     }
     
     private class SimpleKeyboardListener implements KeyboardView.OnKeyboardActionListener {
@@ -56,6 +71,10 @@ public class SimpleInputMethodService extends InputMethodService {
                     caps = !caps;
                     keyboard.setShifted(caps);
                     keyboardView.invalidateAllKeys();
+                    break;
+                    
+                case -2: // 切换到字母/符号键盘
+                    switchKeyboard();
                     break;
                     
                 case Keyboard.KEYCODE_DONE:
@@ -112,7 +131,11 @@ public class SimpleInputMethodService extends InputMethodService {
             }
         }
         
-        @Override public void onPress(int primaryCode) {}
+        @Override public void onPress(int primaryCode) {
+            if (vibrator != null && vibrator.hasVibrator() && MainActivity.isHapticEnabled(SimpleInputMethodService.this)) {
+                vibrator.vibrate(VibrationEffect.createOneShot(10, VibrationEffect.DEFAULT_AMPLITUDE));
+            }
+        }
         @Override public void onRelease(int primaryCode) {}
         @Override public void onText(CharSequence text) {}
         @Override public void swipeLeft() {}
